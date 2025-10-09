@@ -3,3 +3,15 @@
 @theme {
     --color-primary: #F5385D
 }
+
+input[type="text"], input[type="password"], input[type="email"] {
+    @apply w-full border border-gray-300 my-1 py-2 px-3 rounded-2xl;
+}
+
+button {
+    @apply bg-primary;
+}
+
+button.primary {
+    @apply bg-primary p-2 w-full text-white rounded-2xl hover:bg-[#f71643] transition-all cursor-pointer;
+}
