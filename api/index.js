@@ -135,7 +135,7 @@ app.post("/places", (request, response) => {
 
         const placeDoc = await Place.create({
             owner: userData.id,
-            title, address, addedPhotos, description, perks, extraInfo, checkIn, checkOut, maxGuests
+            title, address, photos:addedPhotos, description, perks, extraInfo, checkIn, checkOut, maxGuests
         })
 
         response.json(placeDoc)
