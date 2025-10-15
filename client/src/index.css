@@ -11,3 +11,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="num
 button.primary {
     @apply bg-primary p-2 w-full text-white rounded-2xl hover:bg-[#f71643] transition-all cursor-pointer;
 }
+
+textarea {
+    height: 140px;
+}
