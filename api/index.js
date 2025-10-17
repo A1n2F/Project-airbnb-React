@@ -127,7 +127,7 @@ app.post("/upload", photosMiddleware.array("photos", 100), (request, response) =
 
 app.post("/places", (request, response) => {
     const {token} = request.cookies
-    const {title, address, addedPhotos, description, perks, extraInfo, checkIn, checkOut, maxGuests} = request.body
+    const {title, address, addedPhotos, description, perks, extraInfo, checkIn, checkOut, maxGuests, price} = request.body
     jwt.verify(token, jwtSecret, {}, async (err, userData) => {
         if (err) {
             throw err
@@ -135,14 +135,14 @@ app.post("/places", (request, response) => {
 
         const placeDoc = await Place.create({
             owner: userData.id,
-            title, address, photos:addedPhotos, description, perks, extraInfo, checkIn, checkOut, maxGuests
+            title, address, photos:addedPhotos, description, perks, extraInfo, checkIn, checkOut, maxGuests, price
         })
 
         response.json(placeDoc)
     })
 })
 
-app.get("/places", (request, response) => {
+app.get("/user-places", (request, response) => {
     const {token} = request.cookies
 
     jwt.verify(token, jwtSecret, {}, async (err, userData) => {
@@ -160,7 +160,7 @@ app.get("/places/:id", async (request, response) => {
 
 app.put("/places", async (request, response) => {
     const {token} = request.cookies
-    const {id, title, address, addedPhotos, description, perks, extraInfo, checkIn, checkOut, maxGuests} = request.body
+    const {id, title, address, addedPhotos, description, perks, extraInfo, checkIn, checkOut, maxGuests, price} = request.body
 
     jwt.verify(token, jwtSecret, {}, async (err, userData) => {
         if(err) throw err
@@ -169,7 +169,7 @@ app.put("/places", async (request, response) => {
 
         if (userData.id === placeDoc.owner.toString()) {
             placeDoc.set({
-                title, address, photos:addedPhotos, description, perks, extraInfo, checkIn, checkOut, maxGuests
+                title, address, photos:addedPhotos, description, perks, extraInfo, checkIn, checkOut, maxGuests, price
             })
             
             await placeDoc.save()
@@ -177,6 +177,10 @@ app.put("/places", async (request, response) => {
             response.json("ok")
         }
     })
+})
+
+app.get("/places", async (request, response) => {
+    response.json( await Place.find() )
 })
 
 

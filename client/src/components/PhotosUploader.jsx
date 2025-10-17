@@ -50,7 +50,7 @@ export const PhotosUploader = ({addedPhotos, onChange}) => {
         <>
             <div className="flex gap-2">
                 <input type="text" value={photoLink} onChange={ev => setPhotoLink(ev.target.value)} placeholder={"Add using a link ....jpg"} />
-                <button onClick={addPhotoByLink} className="bg-gray-200 grow px-4 rounded-2xl">Add&nbsp;photo</button>
+                <button onClick={addPhotoByLink} className="bg-gray-200 grow px-4 rounded-2xl cursor-pointer">Add&nbsp;photo</button>
             </div>
 
             <div className="grid gap-2 grid-cols-3 md:grid-cols-4 lg:grid-cols-6 mt-2">
