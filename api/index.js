@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const User = require("./models/User.js")
 const Place = require("./models/Place.js")
+const Booking = require("./models/Booking.js")
 const cookieParser = require("cookie-parser")
 const imageDownloader = require("image-downloader")
 const multer = require("multer")
@@ -181,6 +182,18 @@ app.put("/places", async (request, response) => {
 
 app.get("/places", async (request, response) => {
     response.json( await Place.find() )
+})
+
+app.post("/bookings", (request, response) => {
+    const {place, checkIn, checkOut, numberOfGuests, name, phone, price} = request.body
+
+    Booking.create({
+        place, checkIn, checkOut, numberOfGuests, name, phone, price
+    }).then((doc) => {
+        response.json(doc)
+    }).catch((err) => {
+        throw err
+    })
 })
 
 

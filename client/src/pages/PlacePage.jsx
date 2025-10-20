@@ -49,7 +49,7 @@ export const PlacePage = () => {
     }
 
     return (
-        <div className="mt-4 bg-gray-100 -mx-8 px-8 py-8">
+        <div className="mt-4 bg-gray-100 -mx-8 px-8 pt-8">
             <div className="max-w-7xl mx-auto">
                 <h1 className="text-3xl">{place.title}</h1>
                 <a href={"https://maps.google.com/?q="+place.address} target="_blank" className="flex gap-1 my-3 block font-semibold underline">
